@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF 转图片工具</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>PDF 转图片</h1>
+        <p class="subtitle">在线将 PDF 页面转换为 PNG/JPG 图片</p>
+    </header>
+
+    <div class="container">
+        <section class="upload-area" id="upload-area">
+            <div class="dropzone" id="dropzone">
+                <div class="dropzone-content">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <h3>拖放 PDF 文件到这里</h3>
+                    <p>或者 <button type="button" class="select-file-btn">选择文件</button></p>
+                    <input type="file" id="file-input" accept=".pdf" hidden>
+                </div>
+            </div>
+        </section>
+
+        <section class="settings" id="settings" style="display: none;">
+            <h3>转换设置</h3>
+            <div class="setting-row">
+                <label>
+                    <span>图片质量 (DPI)</span>
+                    <select id="dpi">
+                        <option value="72">低 (72 DPI)</option>
+                        <option value="150" selected>中 (150 DPI)</option>
+                        <option value="300">高 (300 DPI)</option>
+                        <option value="600">极高 (600 DPI)</option>
+                    </select>
+                </label>
+            </div>
+            <div class="setting-row">
+                <label>
+                    <span>输出格式</span>
+                    <select id="format">
+                        <option value="png" selected>PNG</option>
+                        <option value="jpeg">JPEG</option>
+                    </select>
+                </label>
+            </div>
+            <div class="setting-row">
+                <label>
+                    <span>图片质量 (JPEG)</span>
+                    <input type="range" id="quality" min="10" max="100" value="80">
+                    <span id="quality-value">80%</span>
+                </label>
+            </div>
+            <div class="convert-btn-container">
+                <button id="convert-btn" class="convert-btn">开始转换</button>
+            </div>
+        </section>
+
+        <section class="progress" id="progress" style="display: none;">
+            <h3>转换中...</h3>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <p class="progress-text" id="progress-text">准备中...</p>
+        </section>
+
+        <section class="result" id="result" style="display: none;">
+            <h3>转换完成</h3>
+            <div class="result-stats" id="result-stats"></div>
+            <div class="image-list" id="image-list"></div>
+            <div class="download-all-container">
+                <button id="download-all-btn" class="download-all-btn">下载全部 (ZIP)</button>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>纯前端转换 · 文件不上传服务器 · 隐私安全 · 免费使用</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
